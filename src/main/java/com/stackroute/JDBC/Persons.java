@@ -4,6 +4,8 @@ public class Persons{
     private int id;
     private String firstName;
     private String lastName;
+    private String address;
+    private String city;
 
     //Default Constructor
     public Persons(){}
@@ -16,7 +18,7 @@ public class Persons{
         this.city = city;
     }
 
-    private String address;
+
 
     @Override
     public String toString() {
@@ -74,5 +76,5 @@ public class Persons{
         return this;
     }
 
-    private String city;
+
 }

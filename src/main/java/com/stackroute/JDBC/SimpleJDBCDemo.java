@@ -13,13 +13,10 @@ import javax.sql.rowset.JdbcRowSet;
 import java.sql.*;
 import java.util.List;
 
-@Component("simpleJDBCDemo")
+@Component
 public class SimpleJDBCDemo {
     private JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private Connection connection;
-    Statement statement;
-    ResultSet resultSet;
 
     private DataSource dataSource;
 
@@ -54,7 +51,7 @@ public class SimpleJDBCDemo {
 
             while (sqlRowSet.next())
             {
-                System.out.println("  "+sqlRowSet.getInt(1)+"  "+sqlRowSet.getString(3));
+                System.out.println("  "+sqlRowSet.getInt(1)+"  "+sqlRowSet.getString(3)+"  "+sqlRowSet.getString(2));
             }
            /* statement.close();
             resultSet.close();
@@ -65,12 +62,14 @@ public class SimpleJDBCDemo {
             exception.printStackTrace();
         }*/
     }
+
     public void insertPersonDetails(Persons persons)
     {
         String sql="Insert into Persons Values(?,?,?,?,?)";
         jdbcTemplate.update(sql,new Object[]{persons.getId(),persons.getLastName(),persons.getFirstName(),persons.getAddress(),persons.getCity()});
 
     }
+
     public void insertPersonDetailsUsingNamedTemplate(Persons persons)
     {
         String sql="Insert into Persons Values(:id,:lastName,:firstName,:address,:city)";
